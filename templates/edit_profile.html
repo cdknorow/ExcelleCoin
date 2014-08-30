@@ -1,0 +1,156 @@
+{% extends base_layout %}
+
+{% block content %}
+    <div class="l-box pure-u-1">
+        <div id="edit_profile" class="pure-form  pure-form-stacked">
+            <fieldset>
+                <div class="l-box pure-u-1">
+                    <h2><legend> Manage Account</legend></h2>
+                </div>
+                <form id="form_edit_profile" action="{{ url|safe }}" method="post">
+                <input type="hidden" name="_csrf_token" value="{{ csrf_token() }}">
+                <div class='l-box-lrg pure-u-1'>
+                     <div class="l-box pure-u-1">
+                            <legend> ExcellCoin Spreadsheet </legend>
+                        </div>
+                        <input type="hidden" name="_csrf_token" value="{{ csrf_token() }}">
+                        {% if statusfree %}
+                            <div class='l-box-lrg pure-u-1-5'>
+                                <a class="pure-button" href="/refreshoauth2"> Refresh Token </a>
+                            </div>
+                            <div class=' l-box-lrg pure-u-3-5'>
+                             ExcellCoin Authentication has been granted.The free version will update prices every 6 hours. Please create a Google Spreadsheet with the name "ExcellCoin" in your <a href="http://drive.google.com"> Google Drive</a>. See <a href="/cointrack"> CoinTrack </a> For more information. 
+                            </div>
+                          {% elif statuspremium %}
+                            <div class=' l-box-lrg pure-u-1-5'>
+                                <a class="pure-button" href="/refreshoauth2"> Refresh Token </a>
+                            </div>
+                            <div class=' pure-u-3-5'>
+                                  ExcellCoin Authentication has been granted.The Premium Version will update prices every 10 Minutes. Please create a Google Spreadsheet with the name "ExcellCoin" in your <a href="http://drive.google.com"> Google Drive</a>. See <a href="/cointrack"> CoinTrack </a> For more information.
+                            </div>
+                         {% else %}
+                            <div class=' l-box-lrg pure-u-1-5'>
+                                <a class="pure-button" href="/authenticate"> Grant Access </a>
+                            </div>
+                            <div class=' l-box-lrg pure-u-3-5'>
+                              -- Free Version -- Allow ExcellCoin to update a spreadsheet in your google drive. The free version will update prices every 6 hours. Please create a Google Spreadsheet with the name "ExcellCoin" in your <a href="http://drive.google.com"> Google Drive</a>. See <a href="/cointrack"> CoinTrack </a> For more information.
+                            </div>
+                         {% endif %}
+                     {% if statusfree %}
+                        <div class="l-box pure-u-1">
+                            <legend> Track Miners </legend>
+                        </div>
+                        <div class="l-box pure-u-5-24">
+                         {{ macros.field(form.miner_pool, label=_("Mining Pool")) }}
+                        </div>
+                        <div class="l-box pure-u-8-24">
+                         {{ macros.field(form.miner_nickname, label=_("Nickname"), placeholder=_("Enter your")+" "+_("Nickname"), class="input-xlarge focused") }}
+                        </div>
+                        <div class="l-box pure-u-10-24">
+                        {{ macros.field(form.miner_token, label=_("Token"), placeholder=_("Enter your")+" "+_("Token"), 
+                            class="input-xlarge focused") }} 
+                        </div>
+                    {% elif statuspremium %}
+                           <div class="l-box pure-u-1">
+                                <legend> Track Miners </legend>
+                            </div>
+                            <div class="l-box pure-u-5-24">
+                             {{ macros.field(form.miner_pool, label=_("Mining Pool")) }}
+                            </div>
+                            <div class="l-box pure-u-8-24">
+                             {{ macros.field(form.miner_nickname, label=_("Nickname"), placeholder=_("Enter your")+" "+_("Nickname"), class="input-xlarge focused") }}
+                            </div>
+                            <div class="l-box pure-u-10-24">
+                            {{ macros.field(form.miner_token, label=_("Token"), placeholder=_("Enter your")+" "+_("Token"), 
+                                class="input-xlarge focused") }} 
+                            </div>
+
+                                                        <div class="l-box pure-u-5-24">
+                             {{ macros.field(form.miner_pool_b, label=_("Mining Pool")) }}
+                            </div>
+                            <div class="l-box pure-u-8-24">
+                             {{ macros.field(form.miner_nickname_b, label=_("Nickname"), placeholder=_("Enter your")+" "+_("Nickname"), class="input-xlarge focused") }}
+                            </div>
+                            <div class="l-box pure-u-10-24">
+                            {{ macros.field(form.miner_token_b, label=_("Token"), placeholder=_("Enter your")+" "+_("Token"), 
+                                class="input-xlarge focused") }} 
+                            </div>
+                      
+                            <div class="l-box pure-u-5-24">
+                             {{ macros.field(form.miner_pool_c, label=_("Mining Pool")) }}
+                            </div>
+                            <div class="l-box pure-u-8-24">
+                             {{ macros.field(form.miner_nickname_c, label=_("Nickname"), placeholder=_("Enter your")+" "+_("Nickname"), class="input-xlarge focused") }}
+                            </div>
+                            <div class="l-box pure-u-10-24">
+                            {{ macros.field(form.miner_token_c, label=_("Token"), placeholder=_("Enter your")+" "+_("Token"), 
+                                class="input-xlarge focused") }} 
+                            </div>
+                      
+                      
+                     {% endif %}
+
+                    <div class="l-box pure-u-1">
+                        <legend> Profile </legend>
+                    </div>
+                    
+                    <div class ="l-box-lrg pure-u-1 pure-u-med-2-5">
+                        {{ macros.field(form.username, label=_("Username"), placeholder=_("Enter your")+" "+_("Username"), class="input-xlarge focused required") }}
+                        {{ macros.field(form.name, label=_("Name"), placeholder=_("Enter your")+" "+_("Name"), class="input-xlarge focused") }}
+                        {{ macros.field(form.last_name, label=_("Last Name"), placeholder=_("Enter your")+" "+_("Last Name"), class="input-xlarge focused") }}
+                    </div>
+                    <div class ="l-box-lrg  pure-u-1 pure-u-med-2-5">
+                        {{ macros.field(form.country, label=_("Country")) }}
+                        {{ macros.field(form.tz, label=_("Timezone")) }}
+                          <p id='tb'></p><p id='tb'></p>
+                        
+                    </div>
+                    <div class="form-actions l-box-lrg pure-u-1">
+                            <button type="submit" class="pure-button">{% trans %}Update Information{% endtrans %}</button>
+                    </div> 
+                    <div class="l-box pure-u-1">
+                        <legend> Change Password or Email </legend>
+                    </div>
+                    <div class=' l-box-lrg pure-u-2-5'>
+                        <a class="pure-button" href="{{ uri_for('edit-email') }}"> Change Email:  {{email}}  </a>
+                    </div>
+                             
+                    <div class=' l-box-lrg pure-u-1-5'>
+                        <a class="pure-button" href="{{ uri_for("edit-password") }}"> {% trans %}Change your password{% endtrans %} </a>
+                    </div>
+                </div>
+                 </form>
+            </fieldset>
+        </div>
+
+    </div>
+    </div>
+    <p id='b'></p><p id='b'></p>
+
+{% endblock %}
+
+{% block mediaJSLast %}
+<script>
+    $().ready(function() {
+        $("#form_edit_profile").validate({
+            submitHandler: function(form) {
+                    form.submit();
+            },
+            errorPlacement: function(error, element) {
+                element.parent().parent().addClass("error");
+                error.addClass("help-inline").appendTo( element.parent() );
+            }
+        });
+        {% if country != "" %}
+        $('#country option[value="{{ country }}"]').attr("selected",true);
+      {% endif %}
+        {% if tz != "" %}
+        $('#tz option[value="{{ tz }}"]').attr("selected",true);
+        {% endif %}
+        {% if miner_pool != "" %}
+        $('#miner_pool option[value="{{ miner_pool }}"]').attr("selected",true);
+        {% endif %}
+    });
+</script>
+{% endblock %}
+

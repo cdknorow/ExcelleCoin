@@ -1,0 +1,29 @@
+{% extends base_layout %}
+
+{% block content %}
+<div class= "pure-u-2-5">
+    <p id='t'></p><p id='t'></p>
+    <form id="form_login_user" action="{{ url|safe }}" method="post" class="pure-form pure-form-stacked ">
+        <fieldset>
+            <legend> Login </legend>
+            <input type="hidden" name="_csrf_token" value="{{ csrf_token() }}">
+            {{ macros.field(form.username, label=_("Username or Email"), placeholder=_("Enter your")+" "+_("Username or Email"), class="input-xlarge focused required") }}
+            {{ macros.field(form.password, label=_("Password"), placeholder=_("Enter your")+" "+_("Password"), class="input-xlarge focused required", type="password") }}
+            <div class='pure-u-2-5 is-center'>
+                <button type="submit" class="pure-button pure-button-primary">Sign in</button>
+            </div>
+            <div class=' pure-u-2-5 is-center'>
+                <a class="pure-button" href="/register"> Register </a>
+            </div>
+
+         </fieldset>
+    </form>
+    <div class="control-group">
+        <a href="{{ uri_for("password-reset") }}">{% trans %}Forgot your password?{% endtrans %}</a>
+      <div id="register" class="form-actions">
+    </div>
+</div>
+    <p id='ab'></p><p id='ab'></p>
+</div>
+{% endblock %}
+

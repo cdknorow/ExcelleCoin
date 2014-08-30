@@ -1,0 +1,19 @@
+cron:
+- description: update prices
+  url: /admin/tasks/btcworkhorse
+  schedule: every 3 minutes
+- description: update prices
+  url: /admin/tasks/ltcworkhorse
+  schedule: every 3 minutes
+- description: update 14 day volume
+  url: /admin/tasks/graphvolume
+  schedule: every 24 hours
+- description: update forteen day price
+  url: /admin/tasks/graphprice
+  schedule: every 6 hours
+- description: update spreadsheet
+  url: /admin/tasks/spreadsheetfree
+  schedule: every 8 hours
+- description: update spreadsheet
+  url: /admin/tasks/spreadsheetpremium
+  schedule: every 15 minutes

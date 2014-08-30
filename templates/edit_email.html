@@ -1,0 +1,45 @@
+{% extends base_layout %}
+
+{% block content %}
+    <div class="l-box pure-u-1">
+    <p id='t'></p><p id='t'></p>
+    <form class="pure-form pure-form-stacked" id="form_edit_email" action="{{ url|safe }}" method="post" >
+        <fieldset>
+            <div class="pure-u-1">
+                <legend> Change Email Address </legend>
+            </div>
+            <input type="hidden" name="_csrf_token" value="{{ csrf_token() }}">
+            <div class ="pure-u-med-2-5">
+                <div class="control-group">
+                   <label class="control-label">Current Email:</label>
+                    <div class="controls">
+                        <p class="help-block">{{ current_email }}</p>
+                    </div>
+                </div>
+                {{ macros.field(form.new_email, label=_("New Email"), placeholder=_("Enter a new email address"), class="input-xlarge focused required email", type="email") }}
+                {{ macros.field(form.password, label=_("Current Password"), placeholder=_("Enter your")+" "+_("Password"), class="input-xlarge focused required", type="password") }}
+                <div class="form-actions is-center">
+                    <button type="submit" class="pure-button">{% trans %}Change your email{% endtrans %}</button>
+                </div>
+            </div>
+        </fieldset>
+    </form>
+    <p id='b'></p><p id='b'></p>
+   </div>
+{% endblock %}
+
+{% block mediaJSLast %}
+    <script>
+        $().ready(function() {
+            $("#form_edit_password").validate({
+                submitHandler: function(form) {
+                    form.submit();
+                },
+                errorPlacement: function(error, element) {
+                    element.parent().parent().addClass("error");
+                    error.addClass("help-inline").appendTo( element.parent() );
+                }
+            });
+        });
+    </script>
+{% endblock %}

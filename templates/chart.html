@@ -1,0 +1,128 @@
+{% extends base_layout %}
+
+{% block mediaCSS %} 
+<link rel="stylesheet" href="/css/table.css" >
+{% endblock %}
+
+{% block tracker %}
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-48057913-1', 'excellcoin.com');
+  ga('send', 'pageview');
+</script>
+{% endblock %}
+
+{% block content %}
+<div class="l-box pure-u-1-2">
+  <button onclick="SwapPrices('#sectionBTC','#sectionLTC')" class="pure-button pure-button-primary"> BTC</button>
+  <button onclick="SwapPrices('#sectionLTC','#sectionBTC')" class="pure-button pure-button-primary"> LTC</button>
+</div>
+<div class="pure-u-1-2 is-right">
+  {% for coin in btc.currency %}
+  <a href= "http://www.{{  btc.currency[loop.index0] }}.com"> {{  btc.currency[loop.index0] }}</a>: ${{ '%.2f'%btc.price[loop.index0] }} <br>
+  {% endfor %}
+</div>
+<div class='pure-u-1'>
+  <div id="sectionBTC">
+    <table class='sortable' id="currency">
+      <col width="75"> <col width="75">  <col width="150"> <col width="150"> <col width="150"> <col width="150"> <col width="150">
+      <col width="150"> <col width="150"> <col width="150"> 
+      <thead>
+       <tr> <th class="sorttable_numeric"> <b> # </b> </th> <th> <b>Coin<b> </th> <th class="sorttable_numeric">Price (mBTC)</th><th class="sorttable_numeric">% Change</th> <th class="sorttable_numeric">Volume (24hr)</th>  <th class="sorttable_numeric"> BTC-Time </th> <th class="sorttable_numeric">% BTC-Time</th><th class="sorttable_numeric">Liquidity (Sell)</th> <th class="sorttable_numeric">Liquidity (Buy)</th> </tr>
+      </thead>
+      <tbody>
+        {% for i in btcindex %}
+          <tr>
+            <td class='rownumber'> {{loop.index}} </td>
+            <td class='row'> <abr title="{{alt.marketname[i]}}"> {{alt.currency[i][:-4]}}</abbr> </td>
+            <td> <a href="/chart/{{alt.currency[i][:-4]}}BTC">{{alt.price[i]}}</a>  </td> 
+            <td class={{BPchange[i]}}> {{BPpercent[i]}} % </td>
+            <td> {{alt.volume[i]}} </td>
+            <td> {{alt.time_to_sell[i]}} </td>
+            <td class={{bvchange[i]}}> {{bpercent[i]}} % </td>
+            <td> {{alt.weighted_buy[i]}} </td>
+            <td> {{alt.weighted_sell[i]}} </td>
+         </tr>
+        {% endfor %}
+      </tbody>
+      <tfoot>
+       </tfoot>
+    </table>
+  </div>
+  <div id="sectionLTC">
+    <table class='sortable' id="currency">
+      <col width="75">  <col width="75"> <col width="150"> <col width="150"> <col width="150">
+      <col width="150"> <col width="150"> <col width="150"> <col width="150">
+    <thead>
+      <tr> <th> <b> # </b> </th> <th> <b>Coin<b> </th> <th>Price (mLTC)</th>  <th class="sorttable_numeric">% Change</th> <th>Volume (24hr)</th>  <th> LTC-Time </th> <th class="sorttable_numeric">% LTC-Time</th> <th>Liquidity (Sell)</th> <th>Liquidity (Buy)</th> </tr>
+    </thead>
+    <tbody>
+      {% for i in ltcindex %}
+        <tr>  
+         <td class='rownumber'> {{loop.index}} </td>    
+          <td class='row'> {{ltcalt.currency[i][:-4]}} </td>
+          <td> <a href="/chart/{{ltcalt.currency[i][:-4]}}LTC">{{ltcalt.price[i]}}</a> </td> 
+          <td class={{LPchange[i]}}> {{LPpercent[i]}} % </td>
+          <td> {{ltcalt.volume[i]}} </td>
+           <td> {{ltcalt.time_to_sell[i]}} </td>
+          <td class={{lvchange[i]}}> {{lpercent[i]}} % </td>
+          <td> {{ltcalt.weighted_buy[i]}} </td>
+          <td> {{ltcalt.weighted_sell[i]}} </td>       
+        </tr>
+      {% endfor %}
+    </tbody>
+    <tfoot>
+    </tfoot>
+    </table>
+  </div>
+</div>
+<div class='l-box-r pure-u-1'>
+  <b>Values Are Updated every 3 Minutes</b>
+  <br><b>Price:</b> The current market value based on the last trades at <a href="https://www.cryptsy.com">Cryptsy.</a>
+  <br><b>Volume:</b> Total 24 hr trade volume of the coin based on <a href="https://www.cryptsy.com">Cryptsy</a> volume. Volume is in BTC.
+  <br><b>BTC-Time:</b> Actual time in minutes since 1 BTC worth of coin volume has traded in this currency. ( Based on market rate at time of sale ) 
+  <br><b>% BTC-Time:</b> Percent change of BTC-Time from the 24 hr. average BTC-time. (Average is based on 24 hr. trade volume ) Positive percent represents faster BTC-time compared to the average. Negative percent is longer BTC-time than the average. 
+  <br><b>Liquidity:</b> Measure of ability to buy/sell 1 BTC of the coin at the current market price. ( Higher numbers indicate good liquidity )
+  <div class='is-right'>
+   <br><b>* LTC-time, LTC Liquidity are based off 5 LTC volume. LTC volume is in LTC</b>
+  </div>
+</div>
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- excellcoin bottom banner -->
+<div class = "pure-u-1">
+<ins class="adsbygoogle"
+     style="display:inline-block;width:728px;height:90px"
+     data-ad-client="ca-pub-1454971485010945"
+     data-ad-slot="3963818920"></ins>
+</div>
+
+{% endblock %}
+
+{% block mediaJSFirst %}
+
+  <script src="/js/sorttable.js"></script>
+  <script> function SwapPrices(show, hide) {
+               $(hide).hide(); 
+               $(show).show(); 
+             }
+    </script>
+{% endblock %}
+{% block mediaJSLast %}
+
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+    <script>
+    $(document).ready(function(){
+  $("#sectionLTC").hide();
+    });</script>
+
+
+{% endblock %}
+
+
+

@@ -1,0 +1,54 @@
+{% extends base_layout %}
+
+{% block tracker %}
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-48057913-1', 'excellcoin.com');
+  ga('send', 'pageview');
+</script>
+{% endblock %}
+
+{% block content %}
+<div class="l-box-lrg big-font pure-u-med-3-5">
+    CoinTrack is a familiar way to manage your currency. By leveraging the power of Google's cloud based  Spreadsheet Service, a constantly updated extensable wallet tracker is at your finger tips. Check out the <a href="https://docs.google.com/spreadsheet/pub?key=0AiH1wnj74ZUddFNtdkJER1lFMEQtZUdvT2xmLXlmMlE&single=true&gid=0&range=rangexyz&output=html">Live Demo</a> for an simple example of what is possible.
+    <div class='l-box-lrg'>
+    <li> Get updated prices which allow you to keep track of your crypto curreny holdings </li>
+    <li> Get updated on the hashrates of your miners from mining pools with an API token </li>
+    <li><a href="https://docs.google.com/spreadsheet/pub?key=0AiH1wnj74ZUddFNtdkJER1lFMEQtZUdvT2xmLXlmMlE&single=true&gid=0&range=rangexyz&output=html">Live Demo</a>: see how we use CoinTrack</li>
+    </div>
+    <p><a href="/settings/profile">Sign Up</a> To use ExcellCoin CoinTrack updater. Then go to manage account and choose either the free trial or the premium version. Once you have done this create a spreadsheet with the name "ExcellCoin" in your <a href="http://drive.google.com"> Google Drive</a>.</p>
+
+    <p>Remeber you can always <a
+    href="https://www.google.com/accounts/b/0/IssuedAuthSubTokens">revoke</a>
+    permission at any time directly in your google settings or through the account management at ExcellCoin. </p>
+ </div>
+
+ <div class='l-box pure-u-2-5 big-font'>
+ 	<table class="pure-table is-center">
+ 		<thead>
+ 			<tr>
+ 				<th> </th>
+ 				<th> Free Trial </th>
+ 				<th> Premium </th>
+ 			</tr>
+ 		</thead>
+ 		<tbody>
+ 			<tr> <td> Track BTC  </td> <td> Yes </td> <td> Yes </td> </tr>
+ 			<tr> <td> Track LTC </td> <td> No </td> <td> Yes </td> </tr>
+ 			<tr> <td> Update Time </td> <td> 6 hours </td> <td> 30 mins </td> </tr>
+ 			<tr> <td> # of Coins  </td> <td> 10</td> <td> 50  </td> </tr>
+ 			<tr> <td> # of Miners </td> <td> 1 pool </td> <td> 5 Pools </td> </tr>
+  		</tbody> 
+ 	</table>
+     
+ </div>
+  
+    <p id='b'></p><p id='b'></p>
+
+   
+</div>
+{% endblock %}

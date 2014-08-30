@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+{% autoescape true %}
+<html>
+<head>
+<title>Spreadsheet file list</title>
+</head>
+<body>
+	{% if stopupdate %}
+  	<p>You have been removed from excell coin. <a href="/">Proceed to the main
+    Site</a>.</p>
+    {% elif startupdate %}
+    <p><a href= "/"> ExcellCoin </a> will now update the "ExcellCoin" spreadsheet in your google drive.</p>
+    {% else %}
+	<a href="/">Proceed</a> to the main Site.</p>
+    {% endif %}
+</ul>
+</body>
+</html>
+{% endautoescape %}

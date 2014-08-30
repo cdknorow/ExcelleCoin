@@ -1,0 +1,64 @@
+{% extends base_layout %}
+
+{% block content %}
+    <p id='t'></p><p id='t'></p>
+    <form class="pure-form pure-form-stacked " id="form_register" action="{{ url|safe }}" method="post" >
+        <fieldset>
+            <div class="pure-u-1">
+                <legend> Register </legend>
+            </div>
+                <input type="hidden" name="_csrf_token" value="{{ csrf_token() }}">
+            <div class ="pure-u-1 pure-u-med-2-5">
+                {{ macros.field(form.username, label=_("Username"), placeholder=_("Enter your")+" "+_("Username"), class="input-xlarge focused required") }}
+                {{ macros.field(form.email, label=_("Email"), placeholder=_("Enter your")+" "+_("Email"), class="input-xlarge focused required email", type="email") }}
+                {{ macros.field(form.password, label=_("Password"), placeholder=_("Enter your")+" "+_("Password"), class="input-xlarge focused required", type="password") }}
+                {{ macros.field(form.c_password, label=_("Confirm Password"), placeholder=_("Confirm Password"), class="input-xlarge focused required", type="password") }}
+            </div>
+            <div class ="pure-u-1 pure-u-med-1-5"></div>
+            <div class ="pure-u-1 pure-u-med-2-5">
+                {{ macros.field(form.name, label=_("Name"), placeholder=_("Enter your")+" "+_("Name"), class="input-xlarge focused") }}
+                {{ macros.field(form.last_name, label=_("Last Name"), placeholder=_("Enter your")+" "+_("Last Name"), class="input-xlarge focused") }}
+                {{ macros.field(form.country, label=_("Country")) }}
+                {{ macros.field(form.tz, label=_("Timezone")) }}
+            </div>
+            <div class = "pure-u-1">
+            <div class="form-actions">
+                <button type="submit" class="pure-button pure-button-primary">{% trans %}Sign Up{% endtrans %}</button>
+            </div>
+        </fieldset>
+    </form>
+    <p id='b'></p><p id='b'></p>
+</div>
+
+{% endblock %}
+
+{% block mediaJSLast %}
+<script>
+    $().ready(function() {
+        $("#form_register").validate({
+            submitHandler: function(form) {
+                    form.submit();
+            },
+            rules: {
+                password: 'required',
+                c_password: {
+                    required: true,
+                    equalTo: '#password'
+                }
+            },
+            errorPlacement: function(error, element) {
+                element.parent().parent().addClass("error");
+                error.addClass("help-inline").appendTo( element.parent() );
+            }
+        });
+
+        $("#password").passStrength({
+            shortPassText: '{% trans %}Short Password{% endtrans %}',
+            badPassText: '{% trans %}Insecure Password{% endtrans %}',
+            goodPassText: '{% trans %}Good Password{% endtrans %}',
+            strongPassText: '{% trans %}Secure Password{% endtrans %}'
+        });
+    });
+</script>
+{% endblock %}
+

@@ -1,0 +1,92 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Line Chart</title>
+
+    <link rel="stylesheet" href="/pure/pure-min.css"> 
+    <link rel="stylesheet" href="/css/main.css"> 
+    <link rel="stylesheet" href="/css/main-grid.css"> 
+  </head>  
+   <div class="header pure-u-1">
+     <div id="nav-horizontal-menu" class=" home-menu pure-menu pure-menu-open pure-menu-horizontal pure-menu-fixed ">
+       <a class="pure-menu-heading" href="/"> ExcellCoin: Stay Ahead Of The Coin! (Beta)</a>
+       <ul>
+          <li> <a href="/">Chart</a></li>
+          <li><a href="/cointrack"> CoinTrack</a> </li>
+          {% if user_id %}
+          <li><a href="/settings/profile">Manage Account</a></li>
+          <li><a href="/logout">Logout</a></li>
+          {% else %}
+          <li><a href="/login">Login</a></li>
+          {% endif %}
+       </ul>
+     </div>
+  </div>
+  <p id='t'></p><p id='t'></p>
+  <div class='content'>
+  <div class = 'pure-g'>
+  <div class='pure-u-1'>
+   <canvas id="canvas" height="450" width="600"></canvas>
+  </div>
+  </div>
+  </div>
+</body>
+<div class="footer pure-u-1">
+  <div class="pure-g">
+    <div class="l-box pure-u-4-5">
+      ExcellCoin Management helps you stay ahead of the coins. Manage your holdings with CoinTrack© using a familiar Google Spreadsheet which constantly updates to the latest prices. Stay up to date on market prices and trends with the ExcellCoin chart.
+    </div>
+    <div class="l-box-lrg pure-u-1-5">
+      <li><a href="/about">About</a></li>
+      <li><a href="/contact">Contact</a></li>
+      <li><a href="https://twitter.com/ExcellCoin">@ExcellCoin</a> </li>
+    </div>
+  </div>
+  <div class="pure-g">
+    <div class="l-box pure-u-14-24">
+     DGC: DJpnJGPmsuiywia4fwNT4fky5HXiKFJorR<br>
+     BTC: 12HPBFeWvSyfLxEu4Fmu1ssmk6ozFBMfng        
+    </div>
+    <div class="l-box pure-u-10-24 is-right">
+      <br>
+      All content © 2014, Excellcoin Ltd.
+    </div>
+  </div>
+</div>
+  <script src="/js/Chart.js"></script>
+  <script>
+
+    var lineChartData = {
+      labels : ["January","February","March","April","May","June","July"],
+      datasets : [
+        {
+          fillColor : "rgba(220,220,220,0.5)",
+          strokeColor : "rgba(220,220,220,1)",
+          pointColor : "rgba(220,220,220,1)",
+          pointStrokeColor : "#fff",
+          data : [65,59,90,81,56,55,40]
+        },
+        {
+          fillColor : "rgba(151,187,205,0.5)",
+          strokeColor : "rgba(151,187,205,1)",
+          pointColor : "rgba(151,187,205,1)",
+          pointStrokeColor : "#fff",
+          data : [28,48,40,19,96,27,100]
+        }
+      ]
+      
+    }
+
+  var myLine = new Chart(document.getElementById("canvas").getContext("2d")).Line(lineChartData);
+  
+  </script>
+  <!--Grab Google CDN's jQuery, with a protocol relative URL; fall back to local if offline -->
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+<script>window.jQuery || document.write('<script src="/boilerplate/js/libs/jquery.min.js"><\/script>')</script>
+<script src="/boilerplate/js/libs/bootstrap.min.js"></script>
+<!-- scripts concatenated and minified via build script -->
+<script src="/boilerplate/js/plugins.js"></script>
+<script src="/boilerplate/js/script.js"></script>
+<script src="http://yui.yahooapis.com/3.10.3/build/yui/yui-min.js"></script>
+
+</html>

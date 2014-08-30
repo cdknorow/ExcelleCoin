@@ -1,0 +1,91 @@
+{% import "macros.html" as macros %}
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="{{ locale_language_id }}"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8" lang="{{ locale_language_id }}"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9" lang="{{ locale_language_id }}"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="{{ locale_language_id }}"> <!--<![endif]-->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="description" content="">
+    <meta name="author" content="Chris Knorowski">
+    <meta name="keywords" content="">
+    <meta name="generator" content="ExcellCoin: The Currency manager!">
+    <title> ExcellCoin: The CryptopCurrency Manager </title>
+    <!--Load the AJAX API-->
+    <!-- Mobile viewport optimized: h5bp.com/viewport -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="shortcut icon" href="/favicon.ico">
+    {% if is_mobile %}
+
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png">000
+    {% endif %}
+    <link rel="stylesheet" href="/pure/pure-min.css"> 
+    <link rel="stylesheet" href="/css/main.css"> 
+    <link rel="stylesheet" href="/css/main-grid.css"> 
+    {% block mediaCSS %}{% endblock %}
+    <!-- All JavaScript at the bottom, except this Modernizr build.
+       Modernizr enables HTML5 elements & feature detects for optimal performance. -->
+    <!-- script src="/boilerplate/js/libs/modernizr-2.6.1.min.js"></script> -->
+      {% block tracker %}{% endblock %}
+</head>
+<body>
+  <div class="header pure-u-1">
+     <div id="nav-horizontal-menu" class=" home-menu pure-menu pure-menu-open pure-menu-horizontal pure-menu-fixed ">
+       <a class="pure-menu-heading" href="/"> ExcellCoin: Stay Ahead Of The Coin! (Beta)</a>
+       <ul>
+          <li> <a href="/">Chart</a></li>
+          <li><a href="/cointrack"> CoinTrack</a> </li>
+          {% if user_id %}
+          <li><a href="/settings/profile">Manage Account</a></li>
+          <li><a href="/logout">Logout</a></li>
+          {% else %}
+          <li><a href="/login">Login</a></li>
+          {% endif %}
+       </ul>
+     </div>
+  </div>
+  <p id='t'></p><p id='t'></p>
+  <div class='content'>
+    <div class = 'pure-g'>
+      {% block content %}{% endblock %}
+    </div>
+  </div>
+</body>
+
+<div class="footer pure-u-1">
+  <div class="pure-g">
+    <div class="l-box pure-u-4-5">
+      ExcellCoin Management helps you stay ahead of the coins. Manage your holdings with CoinTrack© using a familiar Google Spreadsheet which constantly updates to the latest prices. Stay up to date on market prices and trends with the ExcellCoin chart.
+    </div>
+    <div class="l-box-lrg pure-u-1-5">
+      <li><a href="/about">About</a></li>
+      <li><a href="/contact">Contact</a></li>
+      <li><a href="https://twitter.com/ExcellCoin">@ExcellCoin</a> </li>
+    </div>
+  </div>
+  <div class="pure-g">
+    <div class="l-box pure-u-14-24">
+     DGC: DRjGwZi4MJRD4E23A4QVSAmxcNE3KWarsA<br>
+     BTC: 12HPBFeWvSyfLxEu4Fmu1ssmk6ozFBMfng        
+    </div>
+    <div class="l-box pure-u-10-24 is-right">
+      <br>
+      All content © 2014, Excellcoin Ltd.
+    </div>
+  </div>
+</div>
+
+{% block mediaJSFirst %}{% endblock %}
+<!--Grab Google CDN's jQuery, with a protocol relative URL; fall back to local if offline -->
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+<script>window.jQuery || document.write('<script src="/boilerplate/js/libs/jquery.min.js"><\/script>')</script>
+<script src="/boilerplate/js/libs/bootstrap.min.js"></script>
+<!-- scripts concatenated and minified via build script -->
+<script src="/boilerplate/js/plugins.js"></script>
+<script src="/boilerplate/js/script.js"></script>
+<script src="http://yui.yahooapis.com/3.10.3/build/yui/yui-min.js"></script>
+{% block mediaJSLast %}{% endblock %}
+
+<!-- end scripts -->
+</html>
